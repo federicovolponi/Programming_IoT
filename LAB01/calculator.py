@@ -1,6 +1,10 @@
 from decimal import DivisionByZero
 import json
 import numpy as np
+import os
+
+
+
 
 class calculator():
 
@@ -13,7 +17,15 @@ class calculator():
         self.sumTrue = False
         self.divTrue = False
         self.exitTrue = False
+        self.listDict = []
         return
+
+
+    def json_write(self,file, dictionary):
+        if os.stat(file).st_size != 0:
+            self.listDict = json.load(open(file))
+        self.listDict.append(dictionary)
+        json.dump(self.listDict,  open(file, "w"))
 
     def add(self):
         if self.sumTrue:
@@ -21,17 +33,27 @@ class calculator():
             addDictionary = {"input": self.values,
                              "Operator": "sum",
                              "output": res}
-            print(np.sum(self.values))
+            self.json_write("calculator.json", addDictionary)
+            print(res)
 
     def sub(self):
         if self.subTrue:
-            print(self.values[0] - sum(self.values[1:]))
+            res = self.values[0] - sum(self.values[1:])
+            addDictionary = {"input": self.values,
+                             "Operator": "sub",
+                             "output": res}
+            self.json_write("calculator.json", addDictionary)
+            print(res)
     
     def mul(self):
         if self.mulTrue:
             res = 1
             for x in self.values:
                 res = res * x
+            addDictionary = {"input": self.values,
+                             "Operator": "mul",
+                             "output": res}
+            self.json_write("calculator.json", addDictionary)
             print(res)
     
     def div(self):
@@ -44,6 +66,10 @@ class calculator():
                     print("Cannot divide!")
                     res = "Error"
                     break
+            addDictionary = {"input": self.values,
+                             "Operator": "div",
+                             "output": res}
+            self.json_write("calculator.json", addDictionary)
             print(res)
 
     def iscommand(self, input):
