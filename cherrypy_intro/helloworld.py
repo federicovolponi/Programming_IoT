@@ -21,6 +21,7 @@ class HelloWorld(object):
 		return output
 
 	def POST(self, *uri, **params):
+		pass
 		
 
 if __name__ == "__main__": #Standard configuration to serve the url "localhost:8080"
