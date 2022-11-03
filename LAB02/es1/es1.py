@@ -1,4 +1,4 @@
-import calculator
+import calculator as calc
 import cherrypy
 
 class webCalculator():
@@ -12,7 +12,7 @@ class webCalculator():
             values.append(query[key])
             user_input += " " + str(query[key])
         
-        c = calculator(user_input)
+        c = calc.calculator(user_input)
         vect = []
         for word in (c.input.split()+(["EOF"])):
             isdigit = word.isdigit()
@@ -27,7 +27,6 @@ class webCalculator():
                     c.mul()
                     vect = []
                 c.iscommand(word)
-        return c.res
 
 if __name__ == "__main__":
     # Standard configuration to serve the url "localhost:8080"
