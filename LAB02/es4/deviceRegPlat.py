@@ -10,7 +10,6 @@ class deviceRegPlat():
         return open("Programming_IoT\LAB02\es4\index.html")
     
     def POST(self, *uri, **params):
-        listDevices = {}
         InputAsString = cherrypy.request.body.read()
         InputAsDict = json.loads(InputAsString)
         
