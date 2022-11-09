@@ -4,10 +4,10 @@ import os
 class deviceRegPlat():
     exposed = True
     def __init__(self):
-        self.filepath = "Programming_IoT\LAB02\es4\devices.json"
+        self.filepath = "devices.json"
     
     def GET(self, *uri, **params):
-        return open("Programming_IoT\LAB02\es4\index.html")
+        return open("index.html")
     
     def POST(self, *uri, **params):
         InputAsString = cherrypy.request.body.read()
@@ -18,4 +18,4 @@ class deviceRegPlat():
         listDict["devicesList"].append(InputAsDict)
         json.dump(listDict,  open(self.filepath, "w"))
 
-        return listDict
+        return json.dumps(listDict)
