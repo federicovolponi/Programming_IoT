@@ -9,7 +9,7 @@ class Led:
         self.clientID = clientID
         self.broker = broker
         self.topic = topic
-        self.ckient = MyMQTT(self.clientID, self.broker, 1883, self)
+        self.client = MyMQTT(self.clientID, self.broker, 1883, self)
         self.status = 'off'
 
     def startOperation(self):
