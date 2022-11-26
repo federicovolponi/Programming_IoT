@@ -1,0 +1,20 @@
+{
+
+    "bn": "http://example.org/sensor1/",
+    "e": [
+            {
+                "n": "temperature",
+                "u": "Cel", 
+                "t": 1234, 
+                "v": 22.4
+            },
+            {
+          
+                "n": "humidity",
+                "u": "%",
+                "t": 1236,
+                "v": 50
+
+            }   
+        ]
+}
