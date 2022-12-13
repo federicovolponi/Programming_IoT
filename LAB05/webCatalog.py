@@ -5,13 +5,23 @@ from catalog import *
 class webCatalog():
     exposed = True
     def __init__(self):
-        self.catObj = catalog()
+        self.catObj = catalog() #define catalog object
     
     def GET(self, *uri, **params):
+        # BROKER INFO
         if uri[0] == "broker":
             ip, port = self.catObj.brokerInfo()
             toReturn = f"BROKER INFO:\nIP: {ip}\nPORT: {port}"
             return toReturn
+        
+        # DEVICES INFO
+        elif uri[0] == "devicesList":
+            if len(params) != 0:
+                ids = list(map(int,params.get('id')))
+                idDevices = self.catObj.devicesInfo(ids)
+                return json.dumps(idDevices) 
+            devices = self.catObj.devicesInfo()
+            return json.dumps(devices)      
     
     def POST(self, *uri, **params):
         bodyAsString = cherrypy.request.body.read()
