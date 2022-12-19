@@ -28,8 +28,12 @@ class webCatalog():
         bodyAsDictionary = json.loads(bodyAsString)
         if uri[0] == "device":
             self.catObj.addDevice(bodyAsDictionary)
-        if uri[0] == "user":
-            pass
+        elif uri[0] == "user":
+            self.catObj.addUser(bodyAsDictionary)
+    
+    def PUT(self, *uri, **params):  # /device/id?deviceName=DHT11&availableServices=MQTT
+        if uri[0] == "device":
+            self.catObj.updateDevice(id=uri[1], infoToUpdate=params)
 
 if __name__ == "__main__": #Standard configuration to serve the url "localhost:8080"
 	

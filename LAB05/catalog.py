@@ -27,3 +27,23 @@ class catalog():
         fw = open(self.filename, "w")
         self.jsonDic["devicesList"].append(newDevice)
         json.dump(self.jsonDic, fw, indent=4)
+    
+    def addUser(self, newUser):
+        fw = open(self.filename, "w")
+        self.jsonDic["usersList"].append(newUser)
+        json.dump(self.jsonDic, fw, indent=4)
+    
+    def updateDevice(self, id, infoToUpdate = {}):
+        fw = open(self.filename, "w")
+        id = [int(id)]
+        devToUpdate = self.findDeviceFromID(id)
+        #TODO: insert params to update
+
+    
+    def findDeviceFromID(self, id = []):
+        devices = self.jsonDic["devicesList"]
+        idDevices = []
+        for device in devices:
+            if id.count(device.get('deviceID')) != 0:   
+                idDevices.append(device)
+        return idDevices
